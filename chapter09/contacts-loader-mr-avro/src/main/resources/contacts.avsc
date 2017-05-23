@@ -1,0 +1,10 @@
+{"namespace": "example.avro",
+ "type": "record",
+ "name": "Contact",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "cell",  "type": "string"},
+     {"name": "phone", "type": "string"},
+     {"name": "email", "type": "string"}
+ ]
+}

@@ -1,0 +1,6 @@
+logging:
+    config:../config/logback.xml
+
+elastic:
+    hosts: 192.168.0.165:9300
+    clusterName: elasticsearch

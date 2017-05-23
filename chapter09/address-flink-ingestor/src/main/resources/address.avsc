@@ -1,0 +1,14 @@
+{"namespace": "example.avro",
+ "type": "record",
+ "name": "Contact",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "customerId",  "type": "string"},
+     {"name": "street1", "type": "string"},
+     {"name": "street2", "type": "string"},
+     {"name": "city", "type": "string"},
+     {"name": "state", "type": "string"},
+     {"name": "country", "type": "string"},
+     {"name": "zipCode", "type": "string"}
+ ]
+}
