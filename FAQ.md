@@ -93,3 +93,8 @@ Kafka - 9092
 Zookeeper -2181  
 PostgreSQL - 5432  
 
+14. What should you do if you want to transfer a file in your machine to the VM (CentOS)?  
+Execute the below command:  
+`scp <source_file_location> <vm_user>@<ip_of_vm>:~/`  
+An example is as shown below, which is used to transfer Flink jar file to VM's root:  
+`scp /Users/tjohn/projects/book/single_customer_view_use_case/chapter10/speed-contacts-flink-ingestor/target/speed-contacts-flink-ingestor-1.0-SNAPSHOT.jar tjohn@192.168.105:~/`  
