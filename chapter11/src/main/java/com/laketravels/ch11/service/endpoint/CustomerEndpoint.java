@@ -1,13 +1,13 @@
 package com.laketravels.ch11.service.endpoint;
 
-import com.laketravels.ch11.service.util.ESUtil;
-import com.laketravels.ch08.model.data.Address;
-import com.laketravels.ch08.model.data.Contact;
-import com.laketravels.ch08.model.data.Customer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.laketravels.ch08.model.data.Address;
+import com.laketravels.ch08.model.data.Contact;
+import com.laketravels.ch08.model.data.Customer;
+import com.laketravels.ch11.service.util.ESUtil;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -15,6 +15,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.SearchHits;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,11 +94,15 @@ public class CustomerEndpoint {
         reqBuilder.setIndices("customer").setTypes("customer");
         TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("id", customerId);
         reqBuilder.setQuery(termQueryBuilder);
-        Customer customer = MAPPER.readValue(reqBuilder.get().getHits().getAt(0).getSourceAsString(),
-                Customer.class);
-        customer.setAddress(getCustomerAddress(customerId));
-        customer.setContact(getCustomerContact(customerId));
-        System.out.println(MAPPER.writeValueAsString(customer));
+        SearchHits hits = reqBuilder.get().getHits();
+        long numHits = hits.totalHits();
+        Customer customer = null;
+        if (numHits > 0) {
+            customer = MAPPER.readValue(hits.getAt(0).getSourceAsString(),
+                    Customer.class);
+            customer.setAddress(getCustomerAddress(customerId));
+            customer.setContact(getCustomerContact(customerId));
+        }
         return customer;
     }
 
@@ -106,8 +111,13 @@ public class CustomerEndpoint {
         reqBuilder.setIndices("address").setTypes("address");
         TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("id", customerId);
         reqBuilder.setQuery(termQueryBuilder);
-        Address address = MAPPER.readValue(reqBuilder.get().getHits().getAt(0).getSourceAsString(),
-                Address.class);
+        SearchHits hits = reqBuilder.get().getHits();
+        long numHits = hits.totalHits();
+        Address address = null;
+        if (numHits > 0) {
+            address = MAPPER.readValue(hits.getAt(0).getSourceAsString(),
+                    Address.class);
+        }
         return address;
     }
 
@@ -116,8 +126,13 @@ public class CustomerEndpoint {
         reqBuilder.setIndices("contacts").setTypes("contact");
         TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("id", customerId);
         reqBuilder.setQuery(termQueryBuilder);
-        Contact contact = MAPPER.readValue(reqBuilder.get().getHits().getAt(0).getSourceAsString(),
-                Contact.class);
+        SearchHits hits = reqBuilder.get().getHits();
+        long numHits = hits.totalHits();
+        Contact contact = null;
+        if (numHits > 0) {
+            contact = MAPPER.readValue(hits.getAt(0).getSourceAsString(),
+                    Contact.class);
+        }
         return contact;
     }
 }

@@ -1,7 +1,7 @@
 package com.laketravels.ch10.ingestor.address;
 
-import com.laketravels.ch08.model.data.Address;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.laketravels.ch08.model.data.Address;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.typeutils.TupleTypeInfo;

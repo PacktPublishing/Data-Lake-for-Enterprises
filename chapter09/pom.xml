@@ -16,8 +16,6 @@
     <modules>
         <module>contacts-loader-mr</module>
         <module>contacts-loader-mr-avro</module>
-        <module>address-flink-ingestor</module>
-        <module>contacts-flink-ingestor</module>
     </modules>
 
 </project>

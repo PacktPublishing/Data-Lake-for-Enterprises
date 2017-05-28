@@ -23,9 +23,7 @@ import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
 
-/**
- * Created by pankajmisra on 3/18/17.
- */
+
 public class ContactsLoader extends Configured implements Tool{
 
     public static void main(String[] args) throws Exception {

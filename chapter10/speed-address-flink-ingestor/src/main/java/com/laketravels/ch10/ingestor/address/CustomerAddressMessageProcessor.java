@@ -12,9 +12,9 @@ import org.apache.flink.hadoop.shaded.com.google.common.collect.Maps;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.elasticsearch2.ElasticsearchSink;
-import org.apache.flink.streaming.connectors.elasticsearch2.ElasticsearchSinkFunction;
-import org.apache.flink.streaming.connectors.elasticsearch2.RequestIndexer;
+import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkFunction;
+import org.apache.flink.streaming.connectors.elasticsearch.RequestIndexer;
+import org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink;
 import org.apache.flink.streaming.connectors.fs.Writer;
 import org.apache.flink.streaming.connectors.fs.bucketing.BucketingSink;
 import org.apache.flink.streaming.connectors.fs.bucketing.DateTimeBucketer;
@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public class CustomerAddressMessageProcessor {
 
-
+    private ObjectMapper MAPPER= new ObjectMapper();
 
     public static void main(String[] args) throws Exception {
 
@@ -59,7 +59,8 @@ public class CustomerAddressMessageProcessor {
                                                         new Tuple2CustomerAddressDeserializationSchema(),
                                                         parameterTool.getProperties()));
         messageStream.rebalance().print();
-        System.setProperty("HADOOP_USER_NAME", "tjohn");
+        System.setProperty("HADOOP_USER_NAME", "centos");
+
 
         //HDFS Sink
         BucketingSink<Tuple2<IntWritable, Text>> hdfsSink = new BucketingSink<Tuple2<IntWritable, Text>>(parameterTool.getRequired("hdfsPath"));
@@ -70,7 +71,8 @@ public class CustomerAddressMessageProcessor {
 
         //Elasticsearch Sink
         Map<String, String> config = Maps.newHashMap();
-        config.put("bulk.flush.max.actions", "1");
+        config.put("bulk.flush.max.actions", "1000");
+        config.put("bulk.flush.interval.ms", "250");
         config.put("cluster.name", "elasticsearch");
 
         List<InetSocketAddress> transports = new ArrayList<InetSocketAddress>();
@@ -79,18 +81,21 @@ public class CustomerAddressMessageProcessor {
                                                 ));
 
         messageStream.addSink(new ElasticsearchSink<Tuple2<IntWritable, Text>>(config, transports,
-                                                        new ElasticsearchSinkFunction<Tuple2<IntWritable, Text>>() {
-            public void process(Tuple2<IntWritable, Text> intWritableTextTuple2, RuntimeContext runtimeContext,
-                                                                                    RequestIndexer requestIndexer) {
-                Map<String, Object> json = new java.util.HashMap<String, Object>();
-                String jsonString = ((Text)intWritableTextTuple2.getField(1)).toString();
-                IndexRequest request = Requests.indexRequest()
-                        .index("address")
-                        .type("address")
-                        .source(jsonString);
-                requestIndexer.add(request);
-            }
-        }));
+                new ElasticsearchSinkFunction<Tuple2<IntWritable,Text>>() {
+                    public IndexRequest createIndexRequest(Tuple2<IntWritable, Text> element) {
+                        return Requests.indexRequest()
+                                .index("address")
+                                .type("address")
+                                .id(element.f0.toString())
+                                .source(((Text) element.getField(1)).toString());
+                    }
+
+                    public void process(Tuple2<IntWritable, Text> intWritableTextTuple2, RuntimeContext runtimeContext,
+                                                                                            RequestIndexer requestIndexer) {
+
+                        requestIndexer.add(createIndexRequest(intWritableTextTuple2));
+                    }
+                }));
 
         env.execute();
     }
@@ -100,17 +105,23 @@ public class CustomerAddressMessageProcessor {
 
         transient ParquetWriter writer = null;
         String schema = null;
+        transient Schema schemaInstance = null;
         final ObjectMapper MAPPER = new ObjectMapper();
 
         public SinkParquetWriter(String schema) {
             this.writer = writer;
             this.schema = schema;
+            try {
+                this.schemaInstance = new Schema.Parser().parse(getClass().getClassLoader()
+                        .getResourceAsStream(schema));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         public void open(FileSystem fileSystem, Path path) throws IOException {
             writer = AvroParquetWriter.builder(path)
-                    .withSchema( new Schema.Parser().parse(ClassLoader.getSystemClassLoader()
-                                                                .getResourceAsStream(schema)))
+                    .withSchema(this.schemaInstance)
                     .withCompressionCodec(CompressionCodecName.SNAPPY)
                     .build();
         }
@@ -131,9 +142,7 @@ public class CustomerAddressMessageProcessor {
         public void write(T t) throws IOException {
             final Tuple2<IntWritable, Text> tuple = (Tuple2<IntWritable, Text>) t;
             final List values = new ArrayList();
-            GenericRecord record = new GenericData.Record(new Schema.Parser().parse(Thread.currentThread()
-                                                                                .getContextClassLoader()
-                                                                                .getResourceAsStream(schema)));
+            GenericRecord record = new GenericData.Record(schemaInstance);
             String inputRecord=tuple.f1.toString();
             Address address = MAPPER.readValue(inputRecord,
                                                                 Address.class);
