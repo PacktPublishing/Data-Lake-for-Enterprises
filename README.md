@@ -29,8 +29,8 @@ agent.sources.spool-source.interceptors.uuid.headerName=eventId
 This book is for developers, architects and product/project owners, for realizing Lambda architecture based Data Lake for Enterprises. This book comprises of working examples to help the reader understand and observe various concepts around Data Lake and its basic implementation. In order to run the examples, one would need access to various open source softwares, required infrastructure and Development IDE. Specific efforts have been made to keep the examples simple and leverage commonly available frameworks and components. The operating system used for running these examples has been CentOS 7, but these examples can run on any flavour of Linux operating system.
 
 ## CentOS 7 VM Setup Guide
-Below is the link to step-by-step guide to setup the CentOS 7 VM that would be required to run the examples ans source code discussed in this book.
-* [CentOS 7 VM Setup Guide](VM-Setup-Guide.MD)
+Below is the link to step-by-step guide to setup the CentOS 7 VM that would be required to run the examples ans source code discussed in this book. 
+[CentOS 7 VM Setup Guide](VM-Setup-Guide.MD)
 
 ## Related Products
 * [Data Lake Development with Big Data](https://www.packtpub.com/big-data-and-business-intelligence/data-lake-development-big-data?utm_source=github&utm_medium=repository&utm_campaign=9781785888083)
