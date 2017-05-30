@@ -41,85 +41,72 @@ CentOS 7 VM Setup with VirtualBox
 2.  Create a VM by clicking on NEW icon in toolbar. This will initiate
     the process of VM creation in VIrtualBox
 
-    ![](common/images/vm-setup-image1.png){width="4.051395450568679in"
-    height="0.6579188538932633in"}
+    ![](common/images/vm-setup-image1.png)
 
 3.  Provide Name for the VM, as shown below and click on continue
 
-    ![](common/images/vm-setup-image2.png){width="4.051395450568679in"
-    height="2.367642169728784in"}
+    ![](common/images/vm-setup-image2.png)
 
 4.  Configure memory for the VM to a level between 5GB – 8GB (8GB
     recommended) and continue
 
-    ![](common/images/vm-setup-image3.png){width="4.176395450568679in"
-    height="2.446940069991251in"}
+    ![](common/images/vm-setup-image3.png)
 
 5.  Next the setup would navigate to creation of disk as shown below.
     Select **Create a virtual hard disk now** as shown below, and click
     on **Create**.
 
-    ![](common/images/vm-setup-image4.png){width="4.176395450568679in"
-    height="2.4331069553805773in"}
+    ![](common/images/vm-setup-image4.png)
 
 6.  This will navigate into series of questions around storage, the
     first prompt is shown as below. Here you may select VDI (default)
     and click on continue
 
-    ![](common/images/vm-setup-image5.png){width="4.176395450568679in"
-    height="2.63211176727909in"}
+    ![](common/images/vm-setup-image5.png)
 
 7.  On the next prompt, keep the default selection, i.e. Dynamically
     Allocated and click on continue
 
-    ![](common/images/vm-setup-image6.png){width="4.301395450568679in"
-    height="2.704916885389326in"}
+    ![](common/images/vm-setup-image6.png)
 
 8.  On the final prompt, configure a size of 40GB as shown below and
     click on Create that would create the VM with the requested
     configurations.
 
-    ![](common/images/vm-setup-image7.png){width="4.301395450568679in"
-    height="2.710890201224847in"}
+    ![](common/images/vm-setup-image7.png)
 
 9.  Select the created VM, and click on **Settings** menu
 
-    ![](common/images/vm-setup-image1.png){width="4.301395450568679in"
-    height="0.6985170603674541in"}
+    ![](common/images/vm-setup-image1.png)
 
 10. Navigate to Storage Tab, to configure the optical drive by clicking
     on the **Empty** disk icon and then clicking on Optical Disk icon on
     the right-hand side for specifying CentOS 7 DVD ISO downloaded.
 
-    ![](common/images/vm-setup-image8.png){width="4.225in" height="3.5027777777777778in"}
+    ![](common/images/vm-setup-image8.png)
 
-    ![](common/images/vm-setup-image9.png){width="4.1569860017497815in"
-    height="3.4481660104986878in"}
+    ![](common/images/vm-setup-image9.png)
 
 11. Open the network tab, to configure the network. The VM network must
     be a Bridged Network, with other configurations as shown below.
     Click on **OK** once done.
 
-    ![](common/images/vm-setup-image10.png){width="4.268261154855643in"
-    height="3.1277777777777778in"}
+    ![](common/images/vm-setup-image10.png)
 
 12. Start the CentOS 7 VM by clicking on **Start | Normal**
 
-    ![](common/images/vm-setup-image11.png){width="4.230161854768154in"
-    height="3.142341426071741in"}
+    ![](common/images/vm-setup-image11.png)
 
 13. Once the VM starts, the initial boot options would be displayed.
     Select **Install CentOS Linux 7** and hit ENTER
 
-    ![](common/images/vm-setup-image12.png){width="4.176395450568679in"
-    height="3.407599518810149in"}
+    ![](common/images/vm-setup-image12.png)
 
 14. Once the installation is initiated, the CentOS 7 installation wizard
     would go step-by-step, initial step being the language setting, as
     shown below. Once the language is selected, click on **CONTINUE**.
 
-    ![](common/images/vm-setup-image13.png){width="4.18169728783902in"
-    height="3.136272965879265in"}
+    ![](common/images/vm-setup-image13.png)
 
 15. In the next step, CentOS 7 installation wizard will show things to
     be set. Out of all the things shown, please set the Date and the
@@ -128,32 +115,27 @@ CentOS 7 VM Setup with VirtualBox
 16. On navigating to Date and Time setting, you may select your local
     time zone as shown below and click on **DONE**.
 
-    ![](common/images/vm-setup-image14.png){width="4.170370734908136in"
-    height="3.1277777777777778in"}
+    ![](common/images/vm-setup-image14.png)
 
 17. When we click on **Install Destination**, the wizard will present
     the option of 40 GB HDD which needs to be clicked for selection, and
     proceed ahead by clicking on DONE.
 
-    ![](common/images/vm-setup-image15.png){width="4.176395450568679in"
-    height="3.1322976815398076in"}
+    ![](common/images/vm-setup-image15.png)
 
 18. The installation of CentOS 7 will commence now, and in parallel, the
     root user password and additional user can be configured, as shown
     in the snapshots below.
 
-    ![](common/images/vm-setup-image16.png){width="4.176395450568679in"
-    height="3.132296587926509in"}
+    ![](common/images/vm-setup-image16.png)
 
-    ![](common/images/vm-setup-image17.png){width="4.176395450568679in"
-    height="3.132296587926509in"}
+    ![](common/images/vm-setup-image17.png)
 
 19. Once the installation completes, CentOS 7 installation wizard will
     show up **Reboot** button which needs to be clicked for CentOS VM to
     restart in normal mode.
 
-    ![](common/images/vm-setup-image18.png){width="4.176395450568679in"
-    height="3.132296587926509in"}
+    ![](common/images/vm-setup-image18.png)
 
 20. Once the VM restarts, and prompts for user login, login with root
     user credentials, as setup during the installation process as we
@@ -234,7 +216,7 @@ as yes.
 >
 > **ONBOOT=yes**
 
-1.  Configure the system limits by editing the limits.conf using the
+2.  Configure the system limits by editing the limits.conf using the
     following command
 
 > vi /etc/security/limits.conf
@@ -249,7 +231,7 @@ Append the following lines at the end of the file.
 >
 > \*               hard    nofile          65536
 
-1.  Configure the vm maps limits by editing the sysctl.conf file with
+3.  Configure the vm maps limits by editing the sysctl.conf file with
     following command and adding the the required configuration as
     specified below.
 
@@ -259,7 +241,7 @@ Add the following configuration at the end of the file.
 
 vm.max\_map\_count = 262144
 
-1.  Configure the non-root user (centos in this case) as a sudo user by
+4.  Configure the non-root user (centos in this case) as a sudo user by
     editing sudoers file with following command
 
 > vi /etc/sudoers
@@ -272,17 +254,17 @@ Add the following highlighted line to the sudoers file
 >
 > **centos ALL=(ALL) NOPASSWD: ALL**
 
-1.  Disable the firewall with following commands
+5.  Disable the firewall with following commands
 
 > systemctl stop firewalld
 
 systemctl disable firewalld
 
-1.  Reboot the CentOS VM using the following command
+6.  Reboot the CentOS VM using the following command
 
 reboot
 
-1.  Once the VM is up and running login using non-root user. This
+7.  Once the VM is up and running login using non-root user. This
     non-root user will be our primary user account for all
     actions/operations as described in the book. For any system level
     activity, the command may be prefixed with sudo, for instance for
