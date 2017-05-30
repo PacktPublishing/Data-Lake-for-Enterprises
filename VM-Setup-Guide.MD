@@ -117,7 +117,7 @@ CentOS 7 VM Setup with VirtualBox
 
     ![](common/images/vm-setup-image14.png)
 
-17. When we click on **Install Destination**, the wizard will present
+17. When we click on **Installation Destination**, the wizard will present
     the option of 40 GB HDD which needs to be clicked for selection, and
     proceed ahead by clicking on DONE.
 
