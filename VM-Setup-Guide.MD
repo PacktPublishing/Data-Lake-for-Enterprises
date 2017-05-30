@@ -258,11 +258,11 @@ Add the following highlighted line to the sudoers file
 
 > systemctl stop firewalld
 
-systemctl disable firewalld
+> systemctl disable firewalld
 
 6.  Reboot the CentOS VM using the following command
 
-reboot
+> reboot
 
 7.  Once the VM is up and running login using non-root user. This
     non-root user will be our primary user account for all
