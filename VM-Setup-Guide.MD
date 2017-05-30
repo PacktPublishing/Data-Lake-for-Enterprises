@@ -1,4 +1,4 @@
-% Virtual Machine Setup with CentOS 7
+# Virtual Machine Setup with CentOS 7
 
 We will need a CentOS 7 VM to run the examples and source code described
 in the book. A CentOS 7 VM can be setup either by using any of the cloud
