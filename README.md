@@ -30,7 +30,7 @@ This book is for developers, architects and product/project owners, for realizin
 
 ## CentOS 7 VM Setup Guide
 Below is the link to step-by-step guide to setup the CentOS 7 VM that would be required to run the examples ans source code discussed in this book.
-[CentOS 7 VM Setup Guide](VM-Setup-Guide.MD)
+* [CentOS 7 VM Setup Guide](VM-Setup-Guide.MD)
 
 ## Related Products
 * [Data Lake Development with Big Data](https://www.packtpub.com/big-data-and-business-intelligence/data-lake-development-big-data?utm_source=github&utm_medium=repository&utm_campaign=9781785888083)
