@@ -171,6 +171,8 @@ Common Configuration Steps
 Now lets us follow the steps below to complete configuration for CentOS
 7 VM.
 
+**If VM is configured on Virtual Box,** *step 1* **of the configuration is required. If the VM is instantiated with a cloud provider, ** *step 1* ** can be skipped** 
+
 1.  After login with root user, configure the network interface with vi
     editor, by using following command
 
