@@ -21,7 +21,6 @@ import java.net.UnknownHostException;
 public class ESUtil {
 
     public ESUtil() {
-        System.out.println("invoked");
     }
 
     private TransportClient client = null;
