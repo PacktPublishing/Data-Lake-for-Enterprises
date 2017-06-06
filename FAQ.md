@@ -57,6 +57,7 @@ Hive Start - `${HIVE_HOME}/bin/hive --service hiveserver2 -hiveconf hive.root.lo
 Yarn (Hadoop) start - `${HADOOP_HOME}/sbin/start-yarn.sh`  
 Elasicsearch start - `${ES_HOME}/bin/elasticsearch`  
 Kibana start - `${KIBANA_HOME}/bin/kibana`  
+Flink start - `${FLINK_HOME}/bin/start-local.sh`  
 
 8. How can you figure out what all services are running in the VM?  
 Run the commaand `jps` and you should see all the services running (some names doesnt show clear names, but is useful) as shown below.  
@@ -98,3 +99,11 @@ Execute the below command:
 `scp <source_file_location> <vm_user>@<ip_of_vm>:~/`  
 An example is as shown below, which is used to transfer Flink jar file to VM's root:  
 `scp /Users/tjohn/projects/book/single_customer_view_use_case/chapter10/speed-contacts-flink-ingestor/target/speed-contacts-flink-ingestor-1.0-SNAPSHOT.jar tjohn@192.168.105:~/`  
+
+15. How to delete a Kafka topic?  
+For deleting a Kafka topic, execute the following command:
+`{KAFKA_HOME}/bin/kafka-topics.sh --delete --topic <topic-name> --zookeeper 0.0.0.0:2181`  
+
+16. How to list all Kafka topics?  
+Execute the following command to list Kafka topics:  
+`${KAFKA_HOME}/bin/kafka-topics.sh --list --zookeeper 0.0.0.0:2181`  
