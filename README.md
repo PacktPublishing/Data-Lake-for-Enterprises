@@ -39,5 +39,3 @@ Below is the link to step-by-step guide to setup the CentOS 7 VM that would be r
 
 * [Making Big Data Work for Your Business](https://www.packtpub.com/business/making-big-data-work-your-business?utm_source=github&utm_medium=repository&utm_campaign=9781783000982)
 
-### Suggestions and Feedback
-[Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
